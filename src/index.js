@@ -229,8 +229,11 @@ class PDF2Pic {
     let result = []
 
     if (pagesToConvert === -1) {
-      pagesToConvert = await this.getPages(pdf_path);
-      pagesToConvert.push(pagesToConvert.length + 1);
+      if (pagesToConvert.length < 2) {
+        pagesToConvert = [1]
+      } else {
+        pagesToConvert.push(pagesToConvert.length + 1)
+      }
     } else if (!Array.isArray(pagesToConvert)) {
       pagesToConvert = [pagesToConvert]
     }
